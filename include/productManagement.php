@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config.php';
+include 'config.php';
 
 // Fungsi untuk mendapatkan semua produk dari database
 function getAllProducts($conn) {

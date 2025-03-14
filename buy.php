@@ -1,6 +1,6 @@
 <?php
-require 'config.php';
-include 'productManagement.php';
+include 'include/config.php';
+include 'include/productManagement.php';
 
 // Ambil data produk berdasarkan ID dari database
 $product = null;

@@ -1,5 +1,5 @@
 <?php
-include 'productManagement.php';
+include 'include/productManagement.php';
 
 if($_SERVER['REQUEST_METHOD' ] == 'POST') {
   // Jika ada input produk terbaru
