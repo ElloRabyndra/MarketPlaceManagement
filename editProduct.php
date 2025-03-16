@@ -45,13 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="h-screen p-12 flex justify-center items-center gap-9 font-[Poppins] bg-zinc-900 text-gray-100">
   <main class="form-container bg-zinc-800 rounded-xl p-12 shadow-lg border border-neutral-500">
-    <!-- Header Pembelian -->
+    <!-- Header Edit Produk -->
     <header class="flex gap-4 items-center">
         <a href="index.php" class="text-xl"><i class="bx bx-arrow-back"></i></a>
         <h1 class="text-center text-3xl font-bold">Edit Produk</h1>
     </header>
 
-    <!-- Form Pembelian -->
+    <!-- Form Edit Produk -->
     <form method="POST" class="flex flex-col items-center m-4 space-y-4">
       <div>
         <input required autocomplete="off" name="name" placeholder="Nama" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["name"] ?>">
