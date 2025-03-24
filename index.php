@@ -34,13 +34,13 @@ $products = getAllProducts($conn);
     <button id="addProductButton" class="py-2 px-4 text-2xl bg-blue-500 text-white rounded-3xl hover:bg-blue-600 transition">+</button>
   </aside>
   <!-- Popup Add Product -->
-   <div id="popup" class="hidden fixed inset-0 justify-center items-center bg-zinc-800 bg-opacity-60 backdrop-blur-0">
+  <div id="popup" class="hidden fixed inset-0 justify-center items-center bg-zinc-800 bg-opacity-60 backdrop-blur-0">
      <article class="form-container w-96 h-max bg-zinc-800 rounded-xl  p-12 shadow-lg border border-neutral-500 text-gray-100">
       <div class="flex gap-4 items-center">
         <button id="closePopup" class="text-xl"><i class="bx bx-arrow-back"></i></button>
          <h1 class="text-center text-3xl font-bold">Tambah Produk</h1>
       </div>
-       <form action="include/productManagement.php" method="POST" class="flex flex-col items-center m-4 space-y-4 ">
+       <form action="include/productManagement.php" enctype="multipart/form-data"  method="POST" class="flex flex-col items-center m-4 space-y-4 ">
          <div>
            <input required autocomplete="off" name="name" placeholder="Nama" type="text" class="w-72 p-2 border-b border-slate-400 outline-none bg-transparent">
          </div>
@@ -50,9 +50,13 @@ $products = getAllProducts($conn);
          <div>
            <input required autocomplete="off" name="price" placeholder="Harga Produk" type="number" min="1" class="w-72 p-2 border-b border-slate-400 outline-none bg-transparent appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-moz-number-spin-box]:appearance-none">
          </div>
-         <div>
-           <input required autocomplete="off" name="image" placeholder="Gambar Produk" type="text" class="w-72 p-2 border-b border-slate-400 outline-none bg-transparent">
-         </div>
+          <div>
+            <input required name="image" id="upload" type="file" accept="image/*" class="hidden">
+            <label for="upload" class="flex justify-between w-72 p-2 border-b border-slate-400 outline-none bg-transparent text-gray-400 cursor-pointer">
+              <span>Upload Gambar</span>
+               <i id="uploadIcon" class="bx bx-upload text-xl"></i>
+            </label> 
+          </div>
          <div>
            <button type="submit" name="addProduct" class="w-72 py-2 px-4 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 transition">Tambah</button>
          </div>

@@ -36,7 +36,7 @@ if (!$product) {
     </header>
 
     <!-- Form Edit Produk -->
-    <form action="include/productManagement.php" method="POST" class="flex flex-col items-center m-4 space-y-4">
+    <form action="include/productManagement.php" enctype="multipart/form-data" method="POST" class="flex flex-col items-center m-4 space-y-4">
       <div>
         <input readonly name="id" type="number" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none hidden" value="<?= $id ?>">
       </div>
@@ -50,8 +50,12 @@ if (!$product) {
         <input required autocomplete="off" name="price" placeholder="Harga" type="int" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["price"] ?>">
       </div>
       <div>
-        <input required autocomplete="off" name="image" placeholder="Gambar" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["image"] ?>">
-      </div>
+            <input name="image" id="upload" type="file" accept="image/*" class="hidden">
+            <label for="upload" class="flex justify-between w-72 p-2 border-b border-slate-400 outline-none bg-transparent text-gray-400 cursor-pointer">
+              <span>Upload Gambar</span>
+               <i id="uploadIcon" class="bx bx-upload text-xl"></i>
+            </label> 
+          </div>
       <div>
         <button type="submit" name="editProduct" class="w-72 py-2 px-4 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 transition">Edit</button>
       </div>
