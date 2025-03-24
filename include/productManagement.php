@@ -84,15 +84,35 @@ function bersihkanInput($data) {
 if($_SERVER['REQUEST_METHOD' ] == 'POST') {
   // Jika ada input produk terbaru
     if(isset($_POST['addProduct'])) {
-        $newProduct = [
-            'name' => bersihkanInput($_POST['name']),
-            'description' => bersihkanInput($_POST['description']),
-            'price' => bersihkanInput($_POST['price']),
-            'image' => bersihkanInput($_POST['image'])
-        ];
-          addProduct($conn, $newProduct);
-          header("Location: ../index.php");
-          exit();
+        $name = bersihkanInput($_POST["name"]);
+        $description = bersihkanInput($_POST["description"]);
+        $price = intval($_POST["price"]);
+    
+        // Cek apakah ada file yang diunggah
+        if (!isset($_FILES['image']) || $_FILES['image']['error'] != 0) {
+            die("Error: Gambar wajib diunggah!");
+        }
+    
+        $image = $_FILES['image'];
+        $imageName = hash('sha256', time() . $image['name']) . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
+        $targetPath = '../uploads/' . $imageName;
+    
+        // Pindahkan file ke folder uploads
+        if (move_uploaded_file($image['tmp_name'], $targetPath)) {
+            $newProduct = [
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'image' => $imageName
+            ];
+    
+            addProduct($conn, $newProduct);
+            header("Location: ../index.php");
+            exit();
+        } else {
+            die("Error: Gagal mengunggah gambar.");
+        }
+
     }
 
    // Jika ada produk yang dihapus
@@ -104,14 +124,44 @@ if($_SERVER['REQUEST_METHOD' ] == 'POST') {
 
    // Jika ada produk yang diupdate
    if(isset($_POST['editProduct'])) {
-    $id = bersihkanInput($_POST["id"]);
+    $id = intval($_POST["id"]);
+    $name = bersihkanInput($_POST["name"]);
+    $description = bersihkanInput($_POST["description"]);
+    $price = intval($_POST["price"]);
+
+    // Ambil data produk lama
+    $query = "SELECT image FROM products WHERE id = $id";
+    $result = mysqli_query($conn, $query);
+    $product = mysqli_fetch_assoc($result);
+    $oldImage = $product["image"];
+
+    // Cek apakah ada file gambar baru yang diunggah
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $image = $_FILES['image'];
+        $imageName = hash('sha256', time() . $image['name']) . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
+        $targetPath = '../uploads/' . $imageName;
+
+        // Pindahkan file ke folder uploads
+        if (move_uploaded_file($image['tmp_name'], $targetPath)) {
+            // Hapus gambar lama jika ada
+            if (!empty($oldImage) && file_exists("../uploads/$oldImage")) {
+                unlink("../uploads/$oldImage");
+            }
+        } else {
+            die("Error: Gagal mengunggah gambar baru.");
+        }
+    } else {
+        // Jika tidak ada gambar baru, gunakan gambar lama
+        $imageName = $oldImage;
+    }
+
     $updatedProduct = [
-        "name" => bersihkanInput($_POST["name"]),
-        "description" => bersihkanInput($_POST["description"]),
-        "price" => intval($_POST["price"]),
-        "image" => bersihkanInput($_POST["image"])
+        'name' => $name,
+        'description' => $description,
+        'price' => $price,
+        'image' => $imageName
     ];
-  
+
     if (updateProduct($conn, $id, $updatedProduct)) {
         header("Location: ../index.php");
         exit();
