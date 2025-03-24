@@ -29,7 +29,7 @@ if (!$product) {
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen p-12 flex flex-wrap justify-center items-center gap-9 font-[Poppins] bg-zinc-900 text-gray-100">
+<body class="h-screen p-12 flex flex-wrap justify-center items-center gap-16 font-[Poppins] bg-zinc-900 text-gray-100">
   <main class="form-container bg-zinc-800 rounded-xl p-12 shadow-lg border border-neutral-500">
     <!-- Header Pembelian -->
     <header class="flex gap-4 items-center">
