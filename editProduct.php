@@ -17,22 +17,6 @@ if (!$product) {
     header("Location: index.php");
     exit();
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $updatedProduct = [
-      "name" => bersihkanInput($_POST["name"]),
-      "description" => bersihkanInput($_POST["description"]),
-      "price" => intval($_POST["price"]),
-      "image" => bersihkanInput($_POST["image"])
-  ];
-
-  if (updateProduct($conn, $id, $updatedProduct)) {
-      header("Location: index.php");
-      exit();
-  } else {
-      echo "<p class='text-red-500'>Gagal memperbarui produk.</p>";
-  }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <!-- Form Edit Produk -->
-    <form method="POST" class="flex flex-col items-center m-4 space-y-4">
+    <form action="include/productManagement.php" method="POST" class="flex flex-col items-center m-4 space-y-4">
+      <div>
+        <input readonly name="id" type="number" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none hidden" value="<?= $id ?>">
+      </div>
       <div>
         <input required autocomplete="off" name="name" placeholder="Nama" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["name"] ?>">
       </div>
@@ -66,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input required autocomplete="off" name="image" placeholder="Gambar" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["image"] ?>">
       </div>
       <div>
-        <button type="submit" class="w-72 py-2 px-4 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 transition">Edit</button>
+        <button type="submit" name="editProduct" class="w-72 py-2 px-4 bg-blue-500 text-white rounded-3xl hover:bg-blue-600 transition">Edit</button>
       </div>
     </form>
   </main>

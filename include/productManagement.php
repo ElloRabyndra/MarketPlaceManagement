@@ -41,7 +41,7 @@ function displayProducts($products) {
         echo '<p class="py-2 px-4 text-lg font-semibold">Rp' . number_format($product["price"], 0, ",", ".") . '</p>';
         echo '<a href="buy.php?id=' . $product["id"] . '" class="block h-max py-2 px-6 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition">Beli</a>';
         echo '<a href="editProduct.php?id=' . $product["id"] . '"><i class="bx bx-pencil text-3xl text-blue-500 hover:text-blue-600"></i></a>';
-        echo '<form method="POST" action="index.php">';
+        echo '<form method="POST" action="include/productManagement.php">';
         echo '<input type="hidden" name="delete" value="' . $product["id"] . '">';
         echo '<button type="submit"><i class="bx bx-trash text-3xl text-red-600 hover:text-red-700"></i></button>';
         echo '</form>';
@@ -78,5 +78,46 @@ function bersihkanInput($data) {
     $data = stripslashes($data); // Menghapus backslashes (\)
     $data = htmlspecialchars($data); // Mengubah karakter khusus menjadi entitas HTML
     return $data;
+}
+
+// Jika ada request POST
+if($_SERVER['REQUEST_METHOD' ] == 'POST') {
+  // Jika ada input produk terbaru
+    if(isset($_POST['addProduct'])) {
+        $newProduct = [
+            'name' => bersihkanInput($_POST['name']),
+            'description' => bersihkanInput($_POST['description']),
+            'price' => bersihkanInput($_POST['price']),
+            'image' => bersihkanInput($_POST['image'])
+        ];
+          addProduct($conn, $newProduct);
+          header("Location: ../index.php");
+          exit();
+    }
+
+   // Jika ada produk yang dihapus
+   if(isset($_POST['delete'])) {
+    deleteProduct($conn, $_POST['delete']);
+    header("Location: ../index.php");
+    exit();
+   }
+
+   // Jika ada produk yang diupdate
+   if(isset($_POST['editProduct'])) {
+    $id = bersihkanInput($_POST["id"]);
+    $updatedProduct = [
+        "name" => bersihkanInput($_POST["name"]),
+        "description" => bersihkanInput($_POST["description"]),
+        "price" => intval($_POST["price"]),
+        "image" => bersihkanInput($_POST["image"])
+    ];
+  
+    if (updateProduct($conn, $id, $updatedProduct)) {
+        header("Location: ../index.php");
+        exit();
+    } else {
+        echo "<p class='text-red-500'>Gagal memperbarui produk.</p>";
+    }
+   }
 }
 ?>
