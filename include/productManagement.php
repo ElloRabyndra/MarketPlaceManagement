@@ -33,7 +33,7 @@ function displayProducts($products) {
 
     foreach ($products as $index => $product) {
         echo '<div id="product-card" class="bg-zinc-800 w-[380px] p-6 border border-neutral-500 rounded-xl text-gray-100">';
-        echo '<figure class="overflow-hidden rounded-xl border border-neutral-500"><img src="'. $product["image"] . '" class="w-[350px] h-[220px] m-auto object-cover hover:scale-110 transition"></figure>';
+        echo '<figure class="overflow-hidden rounded-xl border border-neutral-500"><img src="uploads/'. $product["image"] . '" class="w-[350px] h-[220px] m-auto object-cover hover:scale-110 transition"></figure>';
         echo '<div id="product-detail" class="text-center p-2 space-y-1">';
         echo '<h1 class="font-bold text-xl">' . $product["name"] . '</h1>';
         echo '<h3 class="font-medium">' .  $product["description"] . '</h3>';
