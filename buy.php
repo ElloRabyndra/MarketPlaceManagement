@@ -26,7 +26,7 @@ if (!$product) {
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen p-12 flex justify-center items-center gap-9 font-[Poppins] bg-zinc-900 text-gray-100">
+<body class="h-screen p-12 flex flex-wrap justify-center items-center gap-9 font-[Poppins] bg-zinc-900 text-gray-100">
   <main class="form-container bg-zinc-800 rounded-xl p-12 shadow-lg border border-neutral-500">
     <!-- Header Pembelian -->
     <header class="flex gap-4 items-center">
@@ -56,12 +56,33 @@ if (!$product) {
 
     <!-- Status Pemesanan -->
     <?php if($_SERVER["REQUEST_METHOD"] == "POST") : ?>
-  <section class="submit-container shadow p-6 bg-zinc-800 text-gray-100 font-medium rounded-xl text-lg border border-neutral-500">
-    <div class="text-green-500 font-semibold">Pemesanan Berhasil!</div>
-    <div>Pemesan: <?= bersihkanInput($_POST["name"]) ?></div>
-    <div>Produk: <?= bersihkanInput($_POST["product_name"]) ?></div>
-    <div>Jumlah: <?= bersihkanInput($_POST["product_count"]) ?></div>
-  </section>
-  <?php endif ?>
+      <section class="submit-container shadow p-5 bg-zinc-800 text-gray-100 font-medium rounded-xl text-lg border border-neutral-500">
+  <header class="text-2xl text-center font-bold border-b border-slate-400 mb-4">
+    Invoice Pembelian
+  </header>
+  
+  <table class="w-full border-collapse border border-slate-400 text-center">
+    <thead>
+      <tr>
+        <th class="px-5 py-2 border border-slate-400">Pemesan</th>
+        <th class="px-5 py-2 border border-slate-400">Produk</th>
+        <th class="px-5 py-2 border border-slate-400">Jumlah</th>
+        <th class="px-5 py-2 border border-slate-400">Harga</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="px-5 py-2 border border-slate-400"><?= bersihkanInput($_POST["name"]) ?></td>
+        <td class="px-5 py-2 border border-slate-400"><?= bersihkanInput($_POST["product_name"]) ?></td>
+        <td class="px-5 py-2 border border-slate-400"><?= bersihkanInput($_POST["product_count"]) ?></td>
+        <td class="px-5 py-2 border border-slate-400">Rp. <?= $_POST["product_count"] * $product["price"] ?></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="mt-4 text-center text-green-500 font-semibold">Pemesanan Berhasil!</p>
+</section>
+
+    <?php endif ?>
 </body>
 </html>
