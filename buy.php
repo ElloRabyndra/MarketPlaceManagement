@@ -54,7 +54,7 @@ if (!$product) {
     </form>
   </main>
 
-    <!-- Status Pemesanan -->
+    <!-- Invoice Pembelian -->
     <?php if($_SERVER["REQUEST_METHOD"] == "POST") : ?>
       <section class="submit-container shadow p-5 bg-zinc-800 text-gray-100 font-medium rounded-xl text-lg border border-neutral-500">
   <header class="text-2xl text-center font-bold border-b border-slate-400 mb-4">
