@@ -63,6 +63,7 @@ $products = getAllProducts($conn);
          </form>
      </article>
    </div>
+   <footer class="p-4 font-medium text-lg text-center text-white">&copy;ElloRabyndra</footer>
    <script src="js/script.js"></script>
 </body>
 </html>
