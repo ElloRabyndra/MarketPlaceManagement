@@ -7,8 +7,11 @@ include 'include/productManagement.php';
 $product = null;
 if (isset($_GET["id"])) {
     $id = intval($_GET["id"]);
-    $query = "SELECT * FROM products WHERE id = $id";
-    $result = mysqli_query($conn, $query);
+    $query = "SELECT * FROM products WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     $product = mysqli_fetch_assoc($result);
 }
 
@@ -41,13 +44,13 @@ if (!$product) {
         <input readonly name="id" type="number" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none hidden" value="<?= $id ?>">
       </div>
       <div>
-        <input required autocomplete="off" name="name" placeholder="Nama" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["name"] ?>">
+        <input required autocomplete="off" name="name" placeholder="Nama" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= htmlspecialchars($product["name"]) ?>">
       </div>
       <div>
-        <input required autocomplete="off" name="description" placeholder="Deskripsi" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["description"] ?>">
+        <input required autocomplete="off" name="description" placeholder="Deskripsi" type="text" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= htmlspecialchars($product["description"]) ?>">
       </div>
       <div>
-        <input required autocomplete="off" name="price" placeholder="Harga" type="int" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= $product["price"] ?>">
+        <input required autocomplete="off" name="price" placeholder="Harga" type="number" class="w-72 p-2 border-b border-slate-400 bg-transparent outline-none" value="<?= htmlspecialchars($product["price"]) ?>">
       </div>
       <div>
             <input name="image" id="upload" type="file" accept="image/*" class="hidden">
