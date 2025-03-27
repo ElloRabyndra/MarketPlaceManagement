@@ -117,9 +117,8 @@ if($_SERVER['REQUEST_METHOD' ] == 'POST') {
 
    // Jika ada produk yang dihapus
    if(isset($_POST['delete'])) {
-    $id = intval($_POST["delete"]);
-
     // Ambil nama file gambar dari database
+    $id = intval($_POST["delete"]);
     $query = "SELECT image FROM products WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "i", $id);
