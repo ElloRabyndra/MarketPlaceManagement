@@ -117,7 +117,24 @@ if($_SERVER['REQUEST_METHOD' ] == 'POST') {
 
    // Jika ada produk yang dihapus
    if(isset($_POST['delete'])) {
-    deleteProduct($conn, $_POST['delete']);
+    $id = intval($_POST["delete"]);
+
+    // Ambil nama file gambar dari database
+    $query = "SELECT image FROM products WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $product = mysqli_fetch_assoc($result);
+        
+    if ($product) {
+            $imagePath = "../uploads/" . $product["image"]; // Path file gambar
+        if (file_exists($imagePath)) {
+            unlink($imagePath); // Hapus file gambar dari folder uploads
+        }
+    }
+
+    deleteProduct($conn, $id);
     header("Location: ../index.php");
     exit();
    }
