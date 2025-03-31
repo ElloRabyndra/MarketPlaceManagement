@@ -2,7 +2,6 @@
 include 'include/config.php';
 include 'include/productManagement.php';
 
-
 // Ambil data produk berdasarkan ID 
 $product = null;
 if (isset($_GET["id"])) {
