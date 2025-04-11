@@ -1,6 +1,8 @@
 <?php
 include 'include/productManagement.php';
-$products = getAllProducts($conn);
+require_once 'classes/Product.php';
+$Product = new Product();
+$products = $Product->getAllProducts();
 ?>
 
 <!DOCTYPE html>
