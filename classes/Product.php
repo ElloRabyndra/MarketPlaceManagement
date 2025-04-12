@@ -9,6 +9,7 @@ class Product {
       $this->conn = $database->getConnection();
   }
 
+  // Fungsi untuk mendapatkan semua produk
   public function getAllProducts() {
     $query = "SELECT * FROM products";
 
@@ -30,6 +31,7 @@ class Product {
     return $products;
   }
 
+  // Fungsi untuk mendapatkan produk berdasarkan ID
   public function getProductById($product_id) { 
     $query = "SELECT * FROM products WHERE id = '$product_id'";
     $result = mysqli_query($this->conn, $query);
