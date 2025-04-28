@@ -1,7 +1,15 @@
 <?php
+session_start();
 include 'include/productManagement.php';
 require_once 'classes/Product.php';
 $Product = new Product();
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // Jika belum login, redirect ke halaman login
+  header("Location: auth/login.php");
+  exit();
+}
 
 // Ambil data produk berdasarkan ID 
 $product = null;
@@ -22,15 +30,18 @@ if (!$product) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pembelian Produk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen p-12 flex flex-wrap justify-center items-center gap-16 font-[Poppins] bg-zinc-900 text-gray-100">
-  <main class="form-container bg-zinc-800 rounded-xl p-12 shadow-lg border border-neutral-500">
+<body class="font-[Poppins] h-screen p-12 flex flex-wrap justify-center items-center gap-16 bg-zinc-900 text-gray-100">
+  <main class="w-80 md:w-96 form-container bg-zinc-800 rounded-xl p-12 shadow-lg border border-neutral-500">
     <!-- Header Pembelian -->
     <header class="flex gap-4 items-center">
         <a href="index.php" class="text-xl"><i class="bx bx-arrow-back"></i></a>
-        <h1 class="text-center text-3xl font-bold">Pembelian Produk</h1>
+        <h1 class="text-center text-3xl font-bold">Beli Produk</h1>
     </header>
 
     <!-- Form Pembelian -->

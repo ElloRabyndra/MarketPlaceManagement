@@ -1,8 +1,20 @@
 <?php
+session_start();
 include 'include/productManagement.php';
 require_once 'classes/Product.php';
 $Product = new Product();
 $products = $Product->getAllProducts();
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // Jika belum login, redirect ke halaman login
+  header("Location: auth/login.php");
+  exit();
+}
+
+// Cek status login
+$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
+$profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
 ?>
 
 <!DOCTYPE html>
@@ -20,27 +32,31 @@ $products = $Product->getAllProducts();
 <body class="font-[Poppins] bg-zinc-900">
   <!-- Header Product -->
   <header>
-    <h1 class="text-center font-bold text-4xl mt-6 text-gray-100">Daftar Produk</h1>
+    <h1 class="text-center font-bold text-2xl md:text-4xl mt-6 text-gray-100">Daftar Produk</h1>
     <nav class="flex justify-center mt-4 gap-4">
-      <a href="index.php" class="block min-w-28 text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Default</a>
-      <a href="index.php?filter=murah" class="block min-w-28 text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termurah</a>
-      <a href="index.php?filter=mahal" class="block min-w-28 text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termahal</a>
+      <a href="index.php" class="block min-w-28 text-sm sm:text-base text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Default</a>
+      <a href="index.php?filter=murah" class="block min-w-28 text-sm sm:text-base text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termurah</a>
+      <a href="index.php?filter=mahal" class="block min-w-28 text-sm sm:text-base text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termahal</a>
     </nav>
   </header>
    <!-- Daftar Produk -->
   <main class="p-6 flex justify-center gap-10 flex-wrap">
     <?php displayProducts($products); ?>
   </main>
+  <!-- Tombol User Settings -->
+  <aside class="fixed top-0 right-0 px-8 py-6">
+    <a href="auth/user.php" class="px-4 py-2 text-xl bg-blue-500 text-white rounded-full hover:bg-blue-600 transition"><?= $profile ?></a>
+  </aside>
     <!-- Tombol Add Product -->
   <aside class="fixed bottom-0 right-0 p-8">
     <button id="addProductButton" class="py-2 px-4 text-2xl bg-blue-500 text-white rounded-3xl hover:bg-blue-600 transition">+</button>
   </aside>
   <!-- Popup Add Product -->
   <div id="popup" class="hidden fixed inset-0 justify-center items-center bg-zinc-800 bg-opacity-60 backdrop-blur-0">
-     <article class="form-container w-96 h-max bg-zinc-800 rounded-xl  p-12 shadow-lg border border-neutral-500 text-gray-100">
+     <article class="form-container w-80 md:w-96 h-max bg-zinc-800 rounded-xl  p-12 shadow-lg border border-neutral-500 text-gray-100">
       <div class="flex gap-4 items-center">
         <button id="closePopup" class="text-xl"><i class="bx bx-arrow-back"></i></button>
-         <h1 class="text-center text-3xl font-bold">Tambah Produk</h1>
+         <h1 class="text-center text-xl md:text-3xl font-bold">Tambah Produk</h1>
       </div>
        <form action="include/productManagement.php" enctype="multipart/form-data"  method="POST" class="flex flex-col items-center m-4 space-y-4 ">
          <div>

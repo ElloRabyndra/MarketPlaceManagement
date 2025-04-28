@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 require_once __DIR__ . '/../classes/Product.php';
 $Product = new Product();
 
@@ -11,12 +11,12 @@ function displayProducts($products) {
     }
 
     foreach ($products as $product) {
-        echo '<div id="product-card" class="bg-zinc-800 w-[380px] p-6 border border-neutral-500 rounded-xl text-gray-100">';
+        echo '<div id="product-card" class="bg-zinc-800 w-80 md:w-96 p-6 border border-neutral-500 rounded-xl text-gray-100">';
         echo '<figure class="overflow-hidden rounded-xl border border-neutral-500"><img src="uploads/'. $product["image"] . '" class="w-[350px] h-[220px] m-auto object-cover hover:scale-110 transition"></figure>';
         echo '<div id="product-detail" class="text-center p-2 space-y-1">';
         echo '<h1 class="font-bold text-xl">' . $product["name"] . '</h1>';
         echo '<h3 class="font-medium">' .  $product["description"] . '</h3>';
-        echo '<div class="flex justify-center gap-4 pt-2">';
+        echo '<div class="flex justify-center gap-2 md:gap-4 pt-2">';
         echo '<p class="py-2 px-4 text-lg font-semibold">Rp' . number_format($product["price"], 0, ",", ".") . '</p>';
         echo '<a href="buy.php?id=' . $product["id"] . '" class="block h-max py-2 px-6 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition">Beli</a>';
         echo '<a href="editProduct.php?id=' . $product["id"] . '"><i class="bx bx-pencil text-3xl text-blue-500 hover:text-blue-600"></i></a>';
