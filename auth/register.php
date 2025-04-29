@@ -33,30 +33,32 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </header>
 
     <!-- Form Register -->
-    <form action="../include/authController.php" method="POST" class="flex flex-col items-center space-y-4">
-      <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
-        <label class="text-sm" for="username">Username</label>
-        <input required autocomplete="off" name="username" placeholder="Username" type="text" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-      </div>
-      <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
-        <label class="text-sm" for="email">Email</label>
-        <input required autocomplete="off" name="email" placeholder="Email" type="email" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-      </div>
-      <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
-        <label class="text-sm" for="password">Password</label>
-        <input required name="password" placeholder="Password" type="password" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-      </div>
-      <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2"> 
-        <label class="text-sm" for="confirm_password">Konfirmasi Password</label>
-        <input required name="confirm_password" placeholder="Konfirmasi Password" type="password" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-      </div>
-      <div class="w-64 sm:w-72 md:w-96">
-        <button type="submit" name="register" class="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition">Register</button>
-      </div>
-      <div class="text-center mt-4">
-        <p>Sudah punya akun? <a href="login.php" class="text-blue-500 hover:underline">Login</a></p>
-      </div>
-    </form>
+     <section>
+       <form action="../include/authController.php" method="POST" class="flex flex-col items-center space-y-4">
+         <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
+           <label class="text-sm" for="username">Username</label>
+           <input id="username" required autocomplete="off" name="username" placeholder="Username" type="text" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+         </div>
+         <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
+           <label class="text-sm" for="email">Email</label>
+           <input id="email" required autocomplete="off" name="email" placeholder="Email" type="email" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+         </div>
+         <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
+           <label class="text-sm" for="password">Password</label>
+           <input id="password" required name="password" placeholder="Password" type="password" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+         </div>
+         <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2"> 
+           <label class="text-sm" for="confirm_password">Konfirmasi Password</label>
+           <input id="confirm_password" required name="confirm_password" placeholder="Konfirmasi Password" type="password" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+         </div>
+         <div class="w-64 sm:w-72 md:w-96">
+           <button type="submit" name="register" class="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition">Register</button>
+         </div>
+         <footer class="text-center mt-4">
+           <p>Sudah punya akun? <a href="login.php" class="text-blue-500 hover:underline">Login</a></p>
+         </footer>
+       </form>
+     </section>
   </main>
 </body>
 </html>

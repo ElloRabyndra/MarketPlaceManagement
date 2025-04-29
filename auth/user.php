@@ -37,45 +37,49 @@ $email = $_SESSION['email'];
     
     <!-- Form Edit Profile -->
      <main class="flex-1 py-1 px-5 md:py-10 md:px-24 justify-center items-center text-white">
-            <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
+            <header>
+                <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
+            </header>
 
             <?php if(isset($_SESSION['profile_success'])): ?>
-             <div class="flex items-center gap-2 bg-green-400 text-white px-4 py-2 rounded-lg mb-4">
+             <section class="flex items-center gap-2 bg-green-400 text-white px-4 py-2 rounded-lg mb-4">
                 <i class="text-xl bx bx-check"></i>
                 <div><?= $_SESSION['profile_success']; ?></div>
                 <?php unset($_SESSION['profile_success']); ?>
-            </div>
+            </section>
             <?php endif; ?>
             <?php if(isset($_SESSION['profile_error'])): ?>
-             <div class="flex items-center gap-2 bg-red-400 text-white px-4 py-2 rounded-lg mb-4">
+             <section class="flex items-center gap-2 bg-red-400 text-white px-4 py-2 rounded-lg mb-4">
                 <i class="text-xl bx bx-error"></i>
                 <div><?= $_SESSION['profile_error']; ?></div>
                 <?php unset($_SESSION['profile_error']); ?>
-            </div>
+            </section>
             <?php endif; ?>
-
-            <form action="../include/authController.php" method="POST" class="space-y-4">
-                <input type="hidden" name="user_id" value="<?= $userId ?>"> 
-                <div class="w-full md:w-full flex flex-col gap-2">
-                <label for="username">Username</label>
-                <input id="username" required autocomplete="off" name="username" placeholder="Username" type="text" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none" value="<?= $username ?>">
-                </div>
-                <div class="w-full md:w-full flex flex-col gap-2">
-                <label for="current_password">Password Saat Ini</label>
-                <input id="current_password" required autocomplete="off" name="current_password" placeholder="Password Saat Ini" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-                </div>
-                <div class="w-full md:w-full flex flex-col gap-2">
-                <label for="new_password">Password Terbaru</label>
-                <input id="new_password" autocomplete="off" name="new_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-                </div>
-                <div class="w-full md:w-full flex flex-col gap-2">
-                <label for="confirm_password">Konfirmasi Password</label>
-                <input id="confirm_password" autocomplete="off" name="confirm_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-                </div>
-                <div class="w-full md:w-full flex flex-col gap-2">
-                    <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition">Edit Profile</button>
-                </div>
-                </form>
+            
+            <section>
+                <form action="../include/authController.php" method="POST" class="space-y-4">
+                    <input type="hidden" name="user_id" value="<?= $userId ?>"> 
+                    <div class="w-full md:w-full flex flex-col gap-2">
+                    <label for="username">Username</label>
+                    <input id="username" required autocomplete="off" name="username" placeholder="Username" type="text" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none" value="<?= $username ?>">
+                    </div>
+                    <div class="w-full md:w-full flex flex-col gap-2">
+                    <label for="current_password">Password Saat Ini</label>
+                    <input id="current_password" required autocomplete="off" name="current_password" placeholder="Password Saat Ini" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+                    </div>
+                    <div class="w-full md:w-full flex flex-col gap-2">
+                    <label for="new_password">Password Terbaru</label>
+                    <input id="new_password" autocomplete="off" name="new_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+                    </div>
+                    <div class="w-full md:w-full flex flex-col gap-2">
+                    <label for="confirm_password">Konfirmasi Password</label>
+                    <input id="confirm_password" autocomplete="off" name="confirm_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+                    </div>
+                    <div class="w-full md:w-full flex flex-col gap-2">
+                        <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition">Edit Profile</button>
+                    </div>
+                    </form>
+            </section>
      </main>
 </body>
 </html>
