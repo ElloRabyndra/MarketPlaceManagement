@@ -36,8 +36,8 @@ if (!$product) {
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-[Poppins] h-screen p-12 flex flex-wrap justify-center items-center gap-16 bg-zinc-900 text-gray-100">
-  <main class="w-80 md:w-96 form-container bg-zinc-800 rounded-xl p-12 shadow-lg border border-neutral-500">
+<body class="font-[Poppins] h-screen p-12 flex flex-wrap justify-center items-center gap-16 <?= getColorClass('bg-gray-200 text-slate-900', 'bg-zinc-900 text-white') ?>">
+  <main class="w-80 md:w-96 form-container <?= getColorClass('bg-gray-300', 'bg-zinc-800') ?> rounded-xl p-12 shadow-lg border border-neutral-500">
     <!-- Header Pembelian -->
     <header class="flex gap-4 items-center">
         <a href="index.php" class="text-xl"><i class="bx bx-arrow-back"></i></a>
@@ -66,7 +66,7 @@ if (!$product) {
 
     <!-- Invoice Pembelian -->
     <?php if($_SERVER["REQUEST_METHOD"] == "POST") : ?>
-      <section class="submit-container shadow p-5 bg-zinc-800 text-gray-100 font-medium rounded-xl text-lg border border-neutral-500">
+      <section class="submit-container shadow p-5 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-900 text-white') ?> font-medium rounded-xl text-lg border border-neutral-500">
   <header class="text-2xl text-center font-bold border-b border-slate-400 mb-4">
     Invoice Pembelian
   </header>

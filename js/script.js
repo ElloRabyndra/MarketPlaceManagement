@@ -32,3 +32,20 @@ if (uploadInput) {
     }
   });
 }
+
+const themeButton = document.getElementById("themeButton");
+if(themeButton) {
+  themeButton.addEventListener("click", () => {
+    console.log("toggleTheme");
+    const current = getCookie("theme") || "dark";
+    const next = current === "dark" ? "light" : "dark";
+    document.cookie = "theme=" + next + "; path=/; max-age=" + 60 * 60 * 24 * 30;
+    location.reload();
+  });
+  
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+}
+
