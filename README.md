@@ -1,19 +1,22 @@
 # 📦 Marketplace Product Management System  
 **Developed by: M. Rabyndra Janitra Binello**  
 
-The Marketplace Product Management System is a web-based application for managing product inventory in an online store. This application supports CRUD (Create, Read, Update, Delete) operations and stores product images with unique filenames.
+Marketplace Product Management System is a responsive and dynamic web-based application designed to manage product inventory in an online store. It supports **user authentication and full CRUD operations on product data**, including image uploads with unique filenames. The system also includes a toggleable **light/dark mode** for a more comfortable user experience.
 
 ## 🚀 Key Features  
-- **View Product List**: Display a list of available products.  
-- **Add Product**: Add new products with complete details.  
-- **Edit Product**: Update product information.  
-- **Delete Product**: Remove products from the database.  
-- **Upload Product Images**: Save images with unique filenames in the `uploads/` folder.  
+- 🔐 **User Authentication**: Register and login functionality.  
+- 🧾 **View Product List**: Displays all available products in a card layout.  
+- ➕ **Add Product**: Add new products with details like name, description, price, and image.  
+- ✏️ **Edit Product**: Modify existing product information.  
+- 🗑️ **Delete Product**: Remove products from the system.  
+- 🖼️ **Upload Product Image**: Images are stored with unique hashed filenames.  
+- 🌗 **Light/Dark Mode**: Toggle between light and dark themes.
 
 ## 🛠️ Technologies Used  
 - **Frontend**: HTML, Tailwind CSS, JavaScript  
 - **Backend**: PHP (Native)  
-- **Database**: MySQL  
+- **Template Engine**: PHP Embedded  
+- **Database**: MySQL 
 
 ## ⚙️ Installation and Configuration  
 
@@ -36,4 +39,21 @@ The Marketplace Product Management System is a web-based application for managin
 4. **Run Local Server**
    - Use XAMPP or Laragon to start `Apache` and `MySQL`. 
    - Access the website at `http://localhost/your-folder-name/.`
+
+## 🔑 Getting Started
+
+You have two options to start using the system:
+
+1. **Register a new account** through the registration page.
+2. **Login using the provided test account:**
+   - **Username**: `ellorabyndra`
+   - **Password**: `123456`
+
+After logging in, you will be directed to the main dashboard where you can add, edit, or delete products, and toggle between light/dark mode.
+
+## 🧭 Future Development
+
+This project is actively being developed. Upcoming features and improvements include:
+
+- 🔗 **User–Product Relationship**: Each user will have their own product list, ensuring data separation.
 
