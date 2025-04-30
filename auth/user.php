@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include '../utils/theme.php'; 
 
 // Cek apakah user sudah login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -26,12 +27,13 @@ $email = $_SESSION['email'];
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-[Poppins] bg-zinc-900 flex flex-col md:items-center md:flex-row">
-    <nav class="w-full md:w-64 border-r border-slate-400 text-white font-bold shadow-md h-auto md:h-screen md:sticky top-0 p-5">
+<body class="font-[Poppins] <?= getColorClass('bg-gray-200 text-slate-900', 'bg-zinc-900 text-white') ?> flex flex-col md:items-center md:flex-row">
+    <nav class="w-full md:w-64 border-r border-slate-400 font-bold shadow-md h-auto md:h-screen md:sticky top-0 p-5">
         <div class="flex flex-col justify-center font-bold text-center gap-2">
             <a href="../index.php" class="flex justify-center items-center gap-2 px-4 py-1 text-2xl text-center rounded-xl transition"> <i class="bx bx-arrow-back text-3xl"></i> Kembali</a>
             <h2 class="hidden md:block text-xl px-4 py-1"><?= ucfirst($username) ?></h2>
-            <a href="../include/authController.php?logout=true" class="text-xl bg-red-500 text-white px-4 py-1 rounded-xl hover:bg-red-400 transition">Logout</a>
+            <button id="themeButton" class="flex items-center justify-center gap-2 text-xl bg-blue-500 px-4 py-1 rounded-xl hover:bg-blue-600 transition"><i class="<?= getThemeButtonIcon() ?>"></i> <?= getThemeButtonText() ?></button>
+            <a href="../include/authController.php?logout=true" class="text-xl bg-red-500 px-4 py-1 rounded-xl hover:bg-red-400 transition">Logout</a>
         </div>
     </nav>
     
@@ -55,7 +57,6 @@ $email = $_SESSION['email'];
                 <?php unset($_SESSION['profile_error']); ?>
             </section>
             <?php endif; ?>
-            
             <section>
                 <form action="../include/authController.php" method="POST" class="space-y-4">
                     <input type="hidden" name="user_id" value="<?= $userId ?>"> 
@@ -81,5 +82,6 @@ $email = $_SESSION['email'];
                     </form>
             </section>
      </main>
+     <script src="../js/script.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'utils/theme.php'; 
 include 'include/productManagement.php';
 require_once 'classes/Product.php';
 $Product = new Product();
@@ -29,14 +30,14 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-[Poppins] bg-zinc-900">
+<body class="font-[Poppins] <?= getColorClass('bg-gray-200 text-slate-900', 'bg-zinc-900 text-white') ?>">
   <!-- Header Product -->
   <header>
-    <h1 class="text-center font-bold text-2xl md:text-4xl mt-6 text-gray-100">Daftar Produk</h1>
+    <h1 class="text-center font-bold text-2xl md:text-4xl mt-6">Daftar Produk</h1>
     <nav class="flex justify-center mt-4 gap-4">
-      <a href="index.php" class="block min-w-28 text-sm sm:text-base text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Default</a>
-      <a href="index.php?filter=murah" class="block min-w-28 text-sm sm:text-base text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termurah</a>
-      <a href="index.php?filter=mahal" class="block min-w-28 text-sm sm:text-base text-center bg-gray-100 text-neutral-500 px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termahal</a>
+      <a href="index.php" class="block min-w-28 text-sm sm:text-base text-center border border-neutral-500 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-white') ?>  px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Default</a>
+      <a href="index.php?filter=murah" class="block min-w-28 text-sm sm:text-base text-center border border-neutral-500 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-white') ?> px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termurah</a>
+      <a href="index.php?filter=mahal" class="block min-w-28 text-sm sm:text-base text-center border border-neutral-500 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-white') ?> px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termahal</a>
     </nav>
   </header>
    <!-- Daftar Produk -->
@@ -53,7 +54,7 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
   </aside>
   <!-- Popup Add Product -->
   <div id="popup" class="hidden fixed inset-0 justify-center items-center bg-zinc-800 bg-opacity-60 backdrop-blur-0">
-     <article class="form-container w-80 md:w-96 h-max bg-zinc-800 rounded-xl  p-12 shadow-lg border border-neutral-500 text-gray-100">
+     <article class="form-container w-80 md:w-96 h-max rounded-xl  p-12 shadow-lg border border-neutral-500 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-white') ?>">
       <div class="flex gap-4 items-center">
         <button id="closePopup" class="text-xl"><i class="bx bx-arrow-back"></i></button>
          <h1 class="text-center text-xl md:text-3xl font-bold">Tambah Produk</h1>
@@ -81,7 +82,7 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
          </form>
      </article>
    </div>
-   <footer class="p-4 font-medium text-lg text-center text-white">&copy;ElloRabyndra</footer>
+   <footer class="p-4 font-medium text-lg text-center <?= getColorClass('text-slate-900', 'text-white') ?>">&copy;ElloRabyndra</footer>
    <script src="js/script.js"></script>
 </body>
 </html>

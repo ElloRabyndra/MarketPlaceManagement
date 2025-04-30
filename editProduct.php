@@ -36,8 +36,8 @@ if (!$product) {
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-[Poppins] h-screen p-12 flex justify-center items-center gap-9 bg-zinc-900 text-gray-100">
-  <main class="form-container w-80 md:w-96 bg-zinc-800 rounded-xl p-12 shadow-lg border border-neutral-500">
+<body class="font-[Poppins] h-screen p-12 flex justify-center items-center gap-9 <?= getColorClass('bg-gray-200 text-slate-900', 'bg-zinc-900 text-white') ?>">
+  <main class="form-container w-80 md:w-96 <?= getColorClass('bg-gray-300', 'bg-zinc-800') ?> rounded-xl p-12 shadow-lg border border-neutral-500">
     <!-- Header Edit Produk -->
     <header class="flex gap-4 items-center">
         <a href="index.php" class="text-xl"><i class="bx bx-arrow-back"></i></a>
