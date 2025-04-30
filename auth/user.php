@@ -38,7 +38,7 @@ $email = $_SESSION['email'];
     </nav>
     
     <!-- Form Edit Profile -->
-     <main class="flex-1 py-1 px-5 md:py-10 md:px-24 justify-center items-center text-white">
+     <main class="flex-1 py-1 px-5 md:py-10 md:px-24 justify-center items-center <?= getColorClass('text-slate-900', 'text-white') ?>">
             <header>
                 <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
             </header>
