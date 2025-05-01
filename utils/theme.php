@@ -11,7 +11,6 @@ function getThemeButtonText() {
   return getTheme() === 'dark' ? 'Light Mode' : 'Dark Mode';
 }
 
-function getColorClass($lightClass, $darkClass) {
-    $theme = getTheme();
-    return $theme === 'dark' ? $darkClass : $lightClass;
+function getColorClass($light, $dark) {
+  return getTheme() === 'dark' ? $dark : $light;
 }
