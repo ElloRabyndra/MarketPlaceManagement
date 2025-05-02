@@ -83,6 +83,7 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
      </article>
    </div>
    <footer class="p-4 font-medium text-lg text-center <?= getColorClass('text-slate-900', 'text-white') ?>">&copy;ElloRabyndra</footer>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="js/script.js"></script>
 </body>
 </html>
