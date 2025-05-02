@@ -3,7 +3,7 @@ class Database {
   private $host = "localhost";
   private $username = "root";
   private $password = "";
-  private $database = "marketplace_pemweb";
+  private $database = "marketplace";
   public $conn;
 
   public function __construct() {
