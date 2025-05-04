@@ -32,7 +32,7 @@ $email = $_SESSION['email'];
         <div class="flex flex-col justify-center font-bold text-center gap-2">
             <a href="../index.php" class="flex justify-center items-center gap-2 px-4 py-1 text-2xl text-center rounded-xl transition"> <i class="bx bx-arrow-back text-3xl"></i> Kembali</a>
             <h2 class="hidden md:block text-xl px-4 py-1"><?= ucfirst($username) ?></h2>
-            <a href="../utils/set_theme.php" class="flex items-center justify-center gap-2 text-xl bg-blue-500 px-4 py-1 rounded-xl hover:bg-blue-600 transition"><i class="<?= getThemeButtonIcon() ?>"></i> <?= getThemeButtonText() ?></a>
+            <a href="../utils/setTheme.php" class="flex items-center justify-center gap-2 text-xl bg-blue-500 px-4 py-1 rounded-xl hover:bg-blue-600 transition"><i class="<?= getThemeButtonIcon() ?>"></i> <?= getThemeButtonText() ?></a>
             <a href="../include/authController.php?logout=true" class="text-xl bg-red-500 px-4 py-1 rounded-xl hover:bg-red-400 transition">Logout</a>
         </div>
     </nav>
