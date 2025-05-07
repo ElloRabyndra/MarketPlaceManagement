@@ -42,7 +42,30 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
   </header>
    <!-- Daftar Produk -->
   <main class="p-6 flex justify-center gap-10 flex-wrap">
-    <?php displayProducts($products); ?>
+  <?php if (empty($products)): ?>
+        <p class="text-gray-100 text-xl bg-zinc-800 p-3 rounded-lg">Tidak ada produk yang tersedia</p>
+    <?php else: ?>
+        <?php foreach ($products as $product): ?>
+            <div id="product-card" class="<?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-gray-100') ?> w-80 md:w-96 p-6 border border-neutral-500 rounded-xl">
+                <figure class="overflow-hidden rounded-xl border border-neutral-500">
+                    <img src="uploads/<?= $product["image"] ?>" class="w-[350px] h-[220px] m-auto object-cover hover:scale-110 transition">
+                </figure>
+                <div id="product-detail" class="text-center p-2 space-y-1">
+                    <h1 class="font-bold text-xl"><?= $product["name"] ?></h1>
+                    <h3 class="font-medium"><?= $product["description"] ?></h3>
+                    <div class="flex justify-center gap-2 md:gap-4 pt-2">
+                        <p class="py-2 px-4 text-lg font-semibold">Rp<?= number_format($product["price"], 0, ",", ".") ?></p>
+                        <a href="buy.php?id=<?= $product["id"] ?>" class="block h-max py-2 px-6 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition">Beli</a>
+                        <a href="editProduct.php?id=<?= $product["id"] ?>"><i class="bx bxs-pencil text-3xl text-blue-500 hover:text-blue-600"></i></a>
+                        <form method="POST" action="include/productManagement.php">
+                            <input type="hidden" name="delete" value="<?= $product["id"] ?>">
+                            <button type="submit"><i class="bx bx-trash text-3xl text-red-600 hover:text-red-700"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
   </main>
   <!-- Tombol User Settings -->
   <aside class="fixed top-0 right-0 px-8 py-6">
