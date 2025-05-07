@@ -77,5 +77,15 @@ class Product {
     }
   }
 
+  // Fungsi untuk mencari produk
+  public function searchProducts($query) {
+    $sql = "SELECT * FROM products WHERE name LIKE ?";
+    $stmt = $this->conn->prepare($sql);
+    $likeQuery = "%" . $query . "%";
+    $stmt->bind_param("s", $likeQuery);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
 }
 ?>

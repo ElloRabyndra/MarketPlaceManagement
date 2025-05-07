@@ -40,8 +40,19 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
       <a href="index.php?filter=mahal" class="block min-w-28 text-sm sm:text-base text-center border border-neutral-500 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-white') ?> px-4 py-1 rounded-xl hover:bg-blue-500 hover:text-white transition">Termahal</a>
     </nav>
   </header>
+
+  <!-- Search Bar -->
+  <div class="flex justify-center mt-4 px-4">
+  <div class="w-full max-w-md relative">
+    <input type="text" id="search-input" placeholder="Cari produk..." class="w-full px-4 py-2 rounded-xl border border-neutral-500 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-white') ?> focus:outline-none">
+    <button id="clear-search" class="absolute right-3 top-2 text-gray-400 hover:text-gray-600" style="display: none;">
+      <i class="bx bx-x text-xl"></i>
+    </button>
+  </div>
+
+</div>
    <!-- Daftar Produk -->
-  <main class="p-6 flex justify-center gap-10 flex-wrap">
+  <main id="product-container" class="p-6 flex justify-center gap-10 flex-wrap">
   <?php if (empty($products)): ?>
         <p class="text-gray-100 text-xl bg-zinc-800 p-3 rounded-lg">Tidak ada produk yang tersedia</p>
     <?php else: ?>
