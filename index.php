@@ -13,10 +13,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   exit();
 }
 
-// Cek status login
+// Mengambil Username
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
-?>
+?>  
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,12 +62,14 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
                 <figure class="overflow-hidden rounded-xl border border-neutral-500">
                     <img src="uploads/<?= $product["image"] ?>" class="w-[350px] h-[220px] m-auto object-cover hover:scale-110 transition">
                 </figure>
-                <div id="product-detail" class="text-center p-2 space-y-1">
+
+                <!-- Sebagai Admin -->
+                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <div id="product-detail-admin" class="text-center p-2 space-y-1">
                     <h1 class="font-bold text-xl"><?= $product["name"] ?></h1>
                     <h3 class="font-medium"><?= $product["description"] ?></h3>
                     <div class="flex justify-center gap-2 md:gap-4 pt-2">
                         <p class="py-2 px-4 text-lg font-semibold">Rp<?= number_format($product["price"], 0, ",", ".") ?></p>
-                        <a href="buy.php?id=<?= $product["id"] ?>" class="block h-max py-2 px-6 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition">Beli</a>
                         <a href="editProduct.php?id=<?= $product["id"] ?>"><i class="bx bxs-pencil text-3xl text-blue-500 hover:text-blue-600"></i></a>
                         <form method="POST" action="include/productManagement.php">
                             <input type="hidden" name="delete" value="<?= $product["id"] ?>">
@@ -74,6 +77,18 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
                         </form>
                     </div>
                 </div>
+                <?php endif; ?>
+                <!-- Sebagai User -->
+                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'user'): ?>
+                <div id="product-detail-user" class="text-center p-2 space-y-1">
+                    <h1 class="font-bold text-xl"><?= $product["name"] ?></h1>
+                    <h3 class="font-medium"><?= $product["description"] ?></h3>
+                    <div class="flex justify-center gap-2 md:gap-4 pt-2">
+                        <p class="py-2 px-4 text-lg font-semibold">Rp<?= number_format($product["price"], 0, ",", ".") ?></p>
+                        <a href="buy.php?id=<?= $product["id"] ?>" class="block h-max py-2 px-8 bg-blue-500 text-white rounded-2xl hover:bg-blue-600 transition">Beli</a>
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
@@ -82,10 +97,14 @@ $profile = $isLoggedIn ? strtoupper(substr($_SESSION['username'], 0, 1)) : '?';
   <aside class="fixed top-0 right-0 px-8 py-6">
     <a href="auth/user.php" class="px-4 py-2 text-xl bg-blue-500 text-white rounded-full hover:bg-blue-600 transition"><?= $profile ?></a>
   </aside>
-    <!-- Tombol Add Product -->
+  
+  <?php if (isset($_SESSION['role']) && $_SESSION["role"] == "admin"): ?>
+  <!-- Tombol Add Product -->
   <aside class="fixed bottom-0 right-0 p-8">
     <button id="addProductButton" class="py-2 px-4 text-2xl bg-blue-500 text-white rounded-3xl hover:bg-blue-600 transition">+</button>
   </aside>
+  <?php endif; ?>
+
   <!-- Popup Add Product -->
   <div id="popup" class="hidden fixed inset-0 justify-center items-center bg-zinc-800 bg-opacity-60 backdrop-blur-0">
      <article class="form-container w-80 md:w-96 h-max rounded-xl  p-12 shadow-lg border border-neutral-500 <?= getColorClass('bg-gray-300 text-slate-900', 'bg-zinc-800 text-white') ?>">

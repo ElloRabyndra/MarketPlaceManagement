@@ -57,6 +57,7 @@ class Auth {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
                 $_SESSION['logged_in'] = true;
                 
                 return ["success" => true, "message" => "Login berhasil!"];

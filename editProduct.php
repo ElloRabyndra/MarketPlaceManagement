@@ -11,6 +11,13 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   exit();
 }
 
+// Cek apakah user adalah admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== "admin") {
+  // Jika bukan admin, redirect ke halaman utama
+  header("Location: index.php");
+  exit();
+}
+
 // Ambil data produk berdasarkan ID 
 $product = null;
 if (isset($_GET["id"])) {
