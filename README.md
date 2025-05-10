@@ -6,6 +6,7 @@ Marketplace Product Management System is a responsive and dynamic web-based appl
 ## 🚀 Key Features  
 - 🔐 **User Authentication**: Register and login functionality.  
 - 🧾 **View Product List**: Displays all available products in a card layout.  
+- 🔍 **Search Engine**: Search products by name.  
 - ➕ **Add Product**: Add new products with details like name, description, price, and image.  
 - ✏️ **Edit Product**: Modify existing product information.  
 - 🗑️ **Delete Product**: Remove products from the system.  
