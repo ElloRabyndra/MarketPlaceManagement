@@ -1,11 +1,11 @@
 # 📦 Marketplace Product Management System  
 **Developed by: M. Rabyndra Janitra Binello**  
 
-Marketplace Product Management System is a responsive and dynamic web-based application designed to manage product inventory in an online store. It supports **user authentication and full CRUD operations on product data**, including image uploads with unique filenames. The system also includes a toggleable **light/dark mode** for a more comfortable user experience.
+Marketplace Product Management System is a responsive and dynamic web-based application designed to manage product inventory in an online store. It supports **user authentication, role-based authorization, and full CRUD operations** on product data, including secure image uploads. The interface includes a toggleable **light/dark mode** for a comfortable user experience.
 
 ## 🚀 Key Features  
-- 🔐 **User Authentication**: Register and login functionality.  
-- 🧾 **View Product List**: Displays all available products in a card layout.  
+- 🔐 **User Authentication & Authorization**: Register and login functionality.  
+- 🧾 **Product Listing**: Displays all available products in a card layout.  
 - 🔍 **Search Engine**: Search products by name.  
 - ➕ **Add Product**: Add new products with details like name, description, price, and image.  
 - ✏️ **Edit Product**: Modify existing product information.  
@@ -51,10 +51,3 @@ You have two options to start using the system:
    - **Password**: `123456`
 
 After logging in, you will be directed to the main dashboard where you can add, edit, or delete products, and toggle between light/dark mode.
-
-## 🧭 Future Development
-
-This project is actively being developed. Upcoming features and improvements include:
-
-- 🔗 **User–Product Relationship**: Each user will have their own product list, ensuring data separation.
-
