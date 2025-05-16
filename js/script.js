@@ -105,8 +105,8 @@ if ($searchInput.length) {
           }
 
           const productCard = `
-            <div id="product-card" class="${colorClass} w-80 md:w-96 p-6 border border-neutral-500 rounded-xl">
-              <figure class="overflow-hidden rounded-xl border border-neutral-500">
+            <div id="product-card" class="${colorClass} w-80 md:w-96 p-6 rounded-xl">
+              <figure class="overflow-hidden rounded-xl">
                 <img src="uploads/${product.image}" class="w-[350px] h-[220px] m-auto object-cover hover:scale-110 transition">
               </figure>
               <div id="product-detail" class="text-center p-2 space-y-1">

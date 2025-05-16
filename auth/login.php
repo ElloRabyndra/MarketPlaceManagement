@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include '../utils/theme.php'; 
@@ -20,47 +21,93 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen flex justify-center items-center font-[Poppins] <?= getColorClass('bg-gray-200 text-slate-900', 'bg-zinc-900 text-white') ?>">
-  <main class="form-container <?= getColorClass('bg-gray-300', 'bg-zinc-800') ?> rounded-xl p-12 shadow-lg border border-neutral-500">
-    <!-- Header Login -->
-    <header class="text-center">
-      <h1 class="text-3xl font-bold mb-6">Login</h1>
-      <?php if(isset($_SESSION['auth_success'])): ?>
-        <div class="flex items-center gap-2 bg-green-400 text-white px-4 py-2 rounded-lg mb-4">
-          <i class="text-xl bx bx-check"></i>
-          <div><?= $_SESSION['auth_success']; ?></div>
-          <?php unset($_SESSION['auth_success']); ?>
-        </div>
-        <?php endif; ?>
+<body class="min-h-screen flex flex-col justify-center items-center font-[poppins] <?= getColorClass('bg-gray-100 text-slate-800', 'bg-zinc-900 text-gray-100') ?>">
+  <main class="w-full max-w-lg mx-auto px-4">
+    <div class="<?= getColorClass('bg-white', 'bg-zinc-800') ?> rounded-2xl shadow-xl overflow-hidden border <?= getColorClass('border-gray-200', 'border-zinc-700') ?>">
       
+      <!-- Header -->
+      <div class="relative bg-blue-600 py-8 px-6">
+        <h1 class="text-3xl font-bold text-white text-center relative z-10">Login</h1>
+      </div>
+      
+      <!-- Success message -->
+      <?php if(isset($_SESSION['auth_success'])): ?>
+      <div class="mx-6 mt-6 flex items-center gap-2 bg-green-100 text-green-600 px-4 py-3 rounded-lg border border-green-200">
+        <i class="text-xl bx bx-check-circle"></i>
+        <div class="text-sm font-medium"><?= $_SESSION['auth_success']; ?></div>
+        <?php unset($_SESSION['auth_success']); ?>
+      </div>
+      <?php endif; ?>
+      
+      <!-- Error message -->
       <?php if(isset($_SESSION['auth_error'])): ?>
-        <div class="flex items-center gap-2 bg-red-400 text-white px-4 py-2 rounded-lg mb-4">
-          <i class="text-xl bx bx-error"></i>
-          <div><?= $_SESSION['auth_error']; ?></div>
-          <?php unset($_SESSION['auth_error']); ?>
-        </div>
-        <?php endif; ?>
-    </header>
+      <div class="mx-6 mt-6 flex items-center gap-2 bg-red-100 text-red-600 px-4 py-3 rounded-lg border border-red-200">
+        <i class="text-xl bx bx-error-circle"></i>
+        <div class="text-sm font-medium"><?= $_SESSION['auth_error']; ?></div>
+        <?php unset($_SESSION['auth_error']); ?>
+      </div>
+      <?php endif; ?>
 
-    <!-- Form Login -->
-     <section>
-       <form action="../include/authController.php" method="POST" class="flex flex-col items-center space-y-4">
-         <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
-           <label class="text-sm" for="username">Username</label>
-           <input id="username" required autocomplete="off" name="username" placeholder="Username" type="text" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-         </div>
-         <div class="w-64 sm:w-72 md:w-96 flex flex-col gap-2">
-           <label class="text-sm" for="password">Password</label>
-           <input id="password" required name="password" placeholder="Password" type="password" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
-         </div>
-         <div class="w-64 sm:w-72 md:w-96">
-           <button type="submit" name="login" class="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition">Login</button>
-         </div>
-         <footer class="text-center mt-4">
-           <p>Belum punya akun? <a href="register.php" class="text-blue-500 hover:underline">Register</a></p>
-         </footer>
-       </form>
-     </section>
+      <!-- Form Login -->
+      <form action="../include/authController.php" method="POST" class="p-6 space-y-5">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium opacity-90 mb-1.5" for="username">Username</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 opacity-60">
+                <i class="bx bx-user"></i>
+              </span>
+              <input 
+                id="username" 
+                required 
+                autocomplete="off" 
+                name="username" 
+                placeholder="Masukkan username" 
+                type="text" 
+                class="w-full pl-10 py-3 rounded-lg <?= getColorClass('bg-gray-50 border-gray-200', 'bg-zinc-700/50 border-zinc-600') ?> border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+              >
+            </div>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium opacity-90 mb-1.5" for="password">Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 opacity-60">
+                <i class="bx bx-lock-alt"></i>
+              </span>
+              <input 
+                id="password" 
+                required 
+                name="password" 
+                placeholder="Masukkan password" 
+                type="password" 
+                class="w-full pl-10 py-3 rounded-lg <?= getColorClass('bg-gray-50 border-gray-200', 'bg-zinc-700/50 border-zinc-600') ?> border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+              >
+            </div>
+          </div>
+        </div>
+        
+        <div class="pt-2">
+          <button 
+            type="submit" 
+            name="login" 
+            class="w-full py-3 px-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-500/50 transition-all shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2"
+          >
+            <span>Masuk</span>
+            <i class="bx bx-log-in text-xl"></i>
+          </button>
+        </div>
+      </form>
+      
+      <div class="border-t <?= getColorClass('border-gray-200', 'border-zinc-700') ?> py-4 px-6 text-center">
+        <p class="text-sm opacity-80">
+          Belum punya akun? 
+          <a href="register.php" class="text-blue-500 font-medium hover:text-blue-600 hover:underline transition-colors">
+            Register sekarang
+          </a>
+        </p>
+      </div>
+    </div>
   </main>
 </body>
 </html>

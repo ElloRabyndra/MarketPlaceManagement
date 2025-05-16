@@ -27,18 +27,57 @@ $email = $_SESSION['email'];
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-[Poppins] <?= getColorClass('bg-gray-200 text-slate-900', 'bg-zinc-900 text-white') ?> flex flex-col md:items-center md:flex-row">
-    <nav class="w-full md:w-64 border-r border-slate-400 font-bold shadow-md h-auto md:h-screen md:sticky top-0 p-5">
-        <div class="flex flex-col justify-center font-bold text-center gap-2">
-            <a href="../index.php" class="flex justify-center items-center gap-2 px-4 py-1 text-2xl text-center rounded-xl transition"> <i class="bx bx-arrow-back text-3xl"></i> Kembali</a>
-            <h2 class="hidden md:block text-xl px-4 py-1"><?= ucfirst($username) ?></h2>
-            <a href="../utils/setTheme.php" class="flex items-center justify-center gap-2 text-xl bg-blue-500 px-4 py-1 rounded-xl hover:bg-blue-600 transition"><i class="<?= getThemeButtonIcon() ?>"></i> <?= getThemeButtonText() ?></a>
-            <a href="../include/authController.php?logout=true" class="text-xl bg-red-500 px-4 py-1 rounded-xl hover:bg-red-400 transition">Logout</a>
+<body class="font-[Poppins] <?= getColorClass('bg-gray-200 text-slate-900', 'bg-zinc-900 text-white') ?> flex flex-col md:items-start md:flex-row">
+    <nav class="w-full md:w-72 border-r <?= getColorClass('border-gray-300 bg-white', 'border-zinc-700 bg-zinc-800') ?> shadow-xl h-auto md:h-screen md:sticky top-0 transition-all duration-300">
+        <!-- User Profile Section -->
+        <div class="flex flex-col items-center py-8 px-4 border-b <?= getColorClass('border-gray-300', 'border-zinc-700') ?>">
+            <div class="bg-blue-500 w-20 h-20 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                <?= strtoupper(substr($username, 0, 1)) ?>
+            </div>
+            <h2 class="text-xl font-bold"><?= ucfirst($username) ?></h2>
+            <p class="text-sm <?= getColorClass('text-gray-500', 'text-gray-400') ?> mt-1"><?= $email ?? 'user@example.com' ?></p>
+        </div>
+        
+        <!-- Navigation Links -->
+        <div class="py-6 px-4">
+            <div class="mb-8">
+                <h3 class="text-xs uppercase font-semibold mb-4 <?= getColorClass('text-gray-500', 'text-gray-400') ?>">Navigasi Utama</h3>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="../index.php" class="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 <?= getColorClass('hover:bg-gray-100', 'hover:bg-zinc-700') ?>">
+                            <i class="bx bx-home text-2xl <?= getColorClass('text-blue-600', 'text-blue-500') ?>"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 <?= getColorClass('bg-blue-50 text-blue-600', 'bg-blue-900/20 text-blue-500') ?>">
+                            <i class="bx bx-user text-2xl"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Theme & Logout Options -->
+            <div class="space-y-3">
+                <h3 class="text-xs uppercase font-semibold mb-4 <?= getColorClass('text-gray-500', 'text-gray-400') ?>">Preferensi</h3>
+                <a href="../utils/setTheme.php" class="flex items-center justify-between p-3 rounded-lg transition-all duration-200 <?= getColorClass('hover:bg-gray-100', 'hover:bg-zinc-700') ?>">
+                    <div class="flex items-center gap-3">
+                        <i class="<?= getThemeButtonIcon() ?> text-2xl <?= getColorClass('text-yellow-500', 'text-blue-500') ?>"></i>
+                        <span><?= getThemeButtonText() ?></span>
+                    </div>
+                </a>
+                <a href="../include/authController.php?logout=true" class="flex items-center gap-3 p-3 rounded-lg text-white bg-red-500 hover:bg-red-600 transition-all duration-200">
+                    <i class="bx bx-log-out text-2xl"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
         </div>
     </nav>
     
     <!-- Form Edit Profile -->
-     <main class="flex-1 py-1 px-5 md:py-10 md:px-24 justify-center items-center <?= getColorClass('text-slate-900', 'text-white') ?>">
+     <main class="flex-1 py-6 px-5 md:py-16 md:px-24 justify-center items-center <?= getColorClass('text-slate-900', 'text-white') ?>">
+        <div class="p-8 rounded-2xl <?= getColorClass('bg-white', 'bg-zinc-800') ?> shadow-lg">
             <header>
                 <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
             </header>
@@ -62,26 +101,26 @@ $email = $_SESSION['email'];
                     <input type="hidden" name="user_id" value="<?= $userId ?>"> 
                     <div class="w-full md:w-full flex flex-col gap-2">
                     <label for="username">Username</label>
-                    <input id="username" required autocomplete="off" name="username" placeholder="Username" type="text" class="p-3 rounded-lg border border-slate-400 bg-transparent outline-none" value="<?= $username ?>">
+                    <input id="username" required autocomplete="off" name="username" placeholder="Username" type="text" class="p-3 rounded-lg focus:ring-2 <?= getColorClass('bg-gray-100 focus:ring-blue-500 focus:bg-white', 'bg-zinc-700 focus:ring-blue-500') ?> outline-none" value="<?= $username ?>">
                     </div>
                     <div class="w-full md:w-full flex flex-col gap-2">
                     <label for="current_password">Password Saat Ini</label>
-                    <input id="current_password" required autocomplete="off" name="current_password" placeholder="Password Saat Ini" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+                    <input id="current_password" required autocomplete="off" name="current_password" placeholder="Password Saat Ini" type="password" class=" p-3 rounded-lg focus:ring-2 <?= getColorClass('bg-gray-100 focus:ring-blue-500 focus:bg-white', 'bg-zinc-700 focus:ring-blue-500') ?> outline-none">
                     </div>
                     <div class="w-full md:w-full flex flex-col gap-2">
                     <label for="new_password">Password Terbaru</label>
-                    <input id="new_password" autocomplete="off" name="new_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+                    <input id="new_password" autocomplete="off" name="new_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg focus:ring-2 <?= getColorClass('bg-gray-100 focus:ring-blue-500 focus:bg-white', 'bg-zinc-700 focus:ring-blue-500') ?> outline-none">
                     </div>
                     <div class="w-full md:w-full flex flex-col gap-2">
                     <label for="confirm_password">Konfirmasi Password</label>
-                    <input id="confirm_password" autocomplete="off" name="confirm_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg border border-slate-400 bg-transparent outline-none">
+                    <input id="confirm_password" autocomplete="off" name="confirm_password" placeholder="Password Terbaru" type="password" class=" p-3 rounded-lg focus:ring-2 <?= getColorClass('bg-gray-100 focus:ring-blue-500 focus:bg-white', 'bg-zinc-700 focus:ring-blue-500') ?> outline-none">
                     </div>
                     <div class="w-full md:w-full flex flex-col gap-2">
                         <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition">Edit Profile</button>
                     </div>
                     </form>
             </section>
+        </div>
      </main>
-     <script src="../js/script.js"></script>
 </body>
 </html>
