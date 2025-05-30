@@ -79,3 +79,29 @@ You have two options to start using the system:
 
 > 🛠️ To assign the "admin" role to other users, manually update the `role` field in the `users` table via phpMyAdmin or your preferred MySQL client.
 
+---
+
+## 📸 Screenshots
+
+Here are some screenshots:
+
+### Login Page
+![Login Page](screenshot/login.png)
+
+### Home Page *(Admin)*
+![Home Page](screenshot/home_admin.png)
+
+### Add Product *(Admin)*
+![Add Product](screenshot/add_product.png)
+
+### Home Page *(Customer)*
+![Home Page](screenshot/home_customer.png)
+
+### Buy Product *(Customer)*
+![Buy Product](screenshot/buy_product.png)
+
+### Invoice *(Customer)*
+![Invoice](screenshot/invoice.png)
+
+### Profile Management
+![Profile Management](screenshot/profile.png)
